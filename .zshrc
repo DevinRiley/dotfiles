@@ -28,8 +28,7 @@ export LS_COLORS=exfxcxdxbxegedabagacad;
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
-plugins=(rails)
+plugins=(nvm git rails)
 source $ZSH/oh-my-zsh.sh
 
 ulimit -n 1024
@@ -52,7 +51,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 ### Root directory for the Go Language
 export GOROOT=/usr/local/go
 ### Path for Go libraries & local code
-export GOPATH=$HOME/Code/go
+export GOPATH=$HOME/code/go
 ### Add Go binaries to path
 export PATH=$PATH:$GOPATH/bin
 # Add Algorithms 4th Edition library code to Java class path
@@ -63,6 +62,7 @@ alias gd='git diff'
 alias gs='git status'
 alias gco='git checkout'
 alias ga='git add -p'
+alias gpf='git push --force-with-lease'
 alias be='bundle exec'
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 alias rake='noglob rake'
@@ -70,6 +70,18 @@ ulimit -S -n 2048
 # Use brew installed ctags
 alias ctags='/usr/local/bin/ctags'
 
+source /usr/local/share/chruby/auto.sh
+source /usr/local/share/chruby/chruby.sh
+
 rails_replace() {
   find ./app ./spec -name "*.rb" -exec sed -i '' -e $1 {} \;
 }
+
+# nvm stuff
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# fzf keybindings on the command line
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
