@@ -28,6 +28,8 @@ set tabstop=2                     " Global tab width.
 set title                         " Set the terminal's title
 set visualbell                    " No beeping.
 set wildmenu                      " Enhanced command line completion.
+set textwidth=80                  " Set width to 80
+set fo+=t                         " Wrap words after 80 chars when formatting
 set wildmode=list:longest         " Complete files like a shell.
 filetype off
 filetype plugin indent off
@@ -142,5 +144,19 @@ map <leader>rf :RunRubyFocusedTest<CR>
 map <leader>rc :RunRubyFocusedContext<CR>
 map <leader>ra :RunAllRubyTests<CR>
 
+" Easilyi source this file from vim
+map <leader>s :source $MYVIMRC<CR>
+
 " look in current directory first for ctags
 set tags=./tags;/
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" show text after 80 chars with gray background
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+  autocmd BufEnter * match OverLength /\%80v.*/
+augroup END
