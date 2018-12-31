@@ -51,6 +51,7 @@ Plugin 'ngmy/vim-rubocop'
 Plugin 'benmills/vimux'
 Plugin 'junegunn/fzf.vim'
 Plugin 'pgr0ss/vimux-ruby-test'
+Plugin 'AndrewRadev/splitjoin.vim' " splitting/joining blocks
 call vundle#end()            " required
 filetype plugin indent on     " required for Vundle
 " End of Vundle stuff
@@ -85,6 +86,8 @@ map <leader>, <C-^>
 map <leader>j :bn<cr>
 map <leader>l :bp<cr>
 
+" stop highlighting
+map <leader>a :noh<cr>
 " unset default rubocop mapping
 let g:vimrubocop_keymap = 0
 
@@ -130,12 +133,14 @@ set number relativenumber
 map <Leader>vp :VimuxPromptCommand<CR>
 " Run last command executed by VimuxRunCommand
 map <Leader>vl :VimuxRunLastCommand<CR>
-" Zoom the vimux runner pane
-map <Leader>vz :VimuxZoomRunner<CR>
-" inspect runner pane
-map <Leader>vi :VimuxInspectRunner<CR>
 
+" Re-make ctags for current directory
 map <LocalLeader>rt :!ctags -R --exclude=".git\|log\|tmp\|db\|pkg" --extra=+f <CR>
+
+" Vimux ruby test shortcuts
+map <leader>rf :RunRubyFocusedTest<CR>
+map <leader>rc :RunRubyFocusedContext<CR>
+map <leader>ra :RunAllRubyTests<CR>
 
 " look in current directory first for ctags
 set tags=./tags;/
